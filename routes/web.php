@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonajeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource('personajes', PersonajeController::class)->middleware('auth');
+Route::get('/misPersonajes', [PersonajeController::class, 'misPersonajes'])->name('personajes.misPersonajes')->middleware('auth');
 require __DIR__.'/auth.php';
